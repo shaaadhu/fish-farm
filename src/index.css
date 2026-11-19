@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   MIDHULA FARM HUT - THEME VARIABLES
+   ========================================================================== */
+
+/* Default & Theme 2 — Light Fresh Farm (Default) */
+:root,
+[data-theme="light"] {
+  --bg-primary: #F9FAFB;
+  --bg-surface: #FFFFFF;
+  --bg-surface-hover: #F8FAFC;
+  --bg-surface-alt: #ECF5EF; /* Soft botanical farm-green tint matching --accent-primary (#15803D) */
+  --bg-nav: #18191B; /* Same as footer */
+  --border-nav: var(--border-color);
+  --bg-nav-footer: #18191B; /* Charcoal header & footer */
+  --border-color: #D5E8DC; /* Subtle organic green-toned border */
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --accent-primary: #15803D;
+  --accent-primary-hover: #166534;
+  --accent-secondary: #C81D77;
+  --accent-micro: #1D4ED8;
+}
+
+/* Theme 1 — Dark Aquatic & Boutique */
+[data-theme="dark"] {
+  --bg-primary: #0F1115;
+  --bg-surface: #1A1D23;
+  --bg-surface-hover: #232730;
+  --bg-surface-alt: #16191F;
+  --bg-nav: #1A1D23; /* Same as footer */
+  --border-nav: var(--border-color);
+  --bg-nav-footer: #1A1D23; /* Charcoal header & footer */
+  --border-color: #2E323B;
+  --text-primary: #F3F4F6;
+  --text-secondary: #9CA3AF;
+  --accent-primary: #D61F82;
+  --accent-primary-hover: #B8176E;
+  --accent-secondary: #22C55E;
+  --accent-micro: #2563EB;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
+}
+
+/* Hide scrollbar utility for clean horizontal scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
