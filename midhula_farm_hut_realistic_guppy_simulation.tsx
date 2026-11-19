@@ -120,8 +120,23 @@ const WILD_GUPPY_PALETTES = [
 
 // --- REALISTIC SHORT-TAIL GUPPY WITH NATURAL ANATOMY & AGILE FLICK HYDRODYNAMICS ---
 class ShortTailGuppy {
-    [key: string]: any;
-    constructor(w: number, h: number, index: number) {
+  x: number = 0;
+  y: number = 0;
+  palette: any;
+  numJoints: number = 8;
+  jointDist: number = 4;
+  joints: Array<{ x: number; y: number }> = [];
+  angle: number = 0;
+  baseSpeed: number = 1.3;
+  speed: number = 1.3;
+  burstTimer: number = 0;
+  tailWave: number = 0;
+  tailWaveSpeed: number = 0.22;
+  tailLength: number = 12;
+  tailSpread: number = 8;
+  depth: number = 0.5;
+
+  constructor(w: number, h: number, index: number) {
       this.x = (w * 0.2) + Math.random() * (w * 0.6);
       this.y = (h * 0.2) + Math.random() * (h * 0.6);
       this.palette = WILD_GUPPY_PALETTES[index % WILD_GUPPY_PALETTES.length];
@@ -415,9 +430,13 @@ class ShortTailGuppy {
 
 // --- 3 TO 5 SUBTLE GUPPY RIVERBED STONES (PRESERVES FOREGROUND CONTRAST) ---
 class GuppyStone {
-  constructor(x, y, rx, ry, rotation) {
-    [key: string]: any;
-    constructor(x: number, y: number, rx: number, ry: number, rotation: number) {
+  x: number;
+  y: number;
+  rx: number;
+  ry: number;
+  rotation: number;
+
+  constructor(x: number, y: number, rx: number, ry: number, rotation: number) {
       this.x = x;
       this.y = y;
       this.rx = rx;
@@ -474,9 +493,10 @@ class GuppyStone {
 
 // --- CORNER HANGING PLANTS & OVERHANGING RIVER CANOPY VINES ---
 class CornerHangingPlants {
-  constructor(corner, width, height) {
-    [key: string]: any;
-    constructor(corner: string, width: number, height: number) {
+  corner: string;
+  vines: any[];
+
+  constructor(corner: string, width: number, height: number) {
       this.corner = corner; // 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
       this.vines = [];
       const count = 4 + Math.floor(Math.random() * 3); // 4-6 trailing fronds
@@ -612,9 +632,14 @@ function generateBackgroundElements(width, height) {
 
 // --- FLUID CAUSTIC LIGHT RIPPLE PARTICLES (MURK EFFECT) ---
 class FluidRipple {
-  constructor(x, y, speedMult = 1) {
-    [key: string]: any;
-    constructor(x: number, y: number, speedMult = 1) {
+  x: number;
+  y: number;
+  radius: number;
+  maxRadius: number;
+  opacity: number;
+  expandSpeed: number;
+
+  constructor(x: number, y: number, speedMult = 1) {
       this.x = x;
       this.y = y;
       this.radius = 2;
@@ -1010,13 +1035,12 @@ export default function App() {
     };
   }, []);
 
-  const openWhatsApp = (msg) => {
-    const openWhatsApp = (msg?: string) => {
-      const text = encodeURIComponent(
-        msg || "Hello Midhula Farm Hut! I'm reaching out from your website to inquire about cottage availability and stream activities."
-      );
-      window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
-    };
+  const openWhatsApp = (msg?: string) => {
+    const text = encodeURIComponent(
+      msg || "Hello Midhula Farm Hut! I'm reaching out from your website to inquire about cottage availability and stream activities."
+    );
+    window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+  };
 
     return (
       <div
